@@ -1,10 +1,11 @@
 pipeline {
     agent any
   
+    stages {
         stage('Restore Dependencies') {
             steps {
                 script {
-                    bat 'dotnet restore'
+                    sh 'dotnet restore'
                 }
             }
         }
@@ -12,16 +13,17 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    bat 'dotnet build --no-restore'
+                    sh 'dotnet build --no-restore'
                 }
             }
         }
 
-        stage('Run Tests') {
+        stage('Run Integration Tests') {
             steps {
                 script {
-                    bat 'dotnet test --no-build --verbosity normal'
+                    sh 'dotnet test --no-build --verbosity normal'
                 }
             }
         }
+    }
 }
