@@ -5,7 +5,7 @@ pipeline {
         stage('Restore Dependencies') {
             steps {
                 script {
-                    sh 'dotnet restore'
+                    bat 'dotnet restore'
                 }
             }
         }
@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh 'dotnet build --no-restore'
+                    bat 'dotnet build --no-restore'
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
         stage('Run Integration Tests') {
             steps {
                 script {
-                    sh 'dotnet test --no-build --verbosity normal'
+                    bat 'dotnet test --no-build --verbosity normal'
                 }
             }
         }
